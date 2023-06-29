@@ -1,28 +1,23 @@
 #!/usr/bin/python3
-
 """
-Pascal's Triangle
+Function pascal triangle
 """
 
 
 def pascal_triangle(n):
     """Print Pascal's Triangle
-    Args:
         n (int): Size of the pascal triangle
     """
-    res = []
+    t = []
     if (n <= 0):
-        return res
+        return t
     else:
-        for x in range(n+1):
-            temp = []
-            # first element is always 1
+        for i in range(n+1):
+            p = []
             c = 1
-            for y in range(1, x+1):
-                # first value in a line is always 1
-                temp.append(c)
-                # using Binomial Coefficient
-                c = c * (x - y) // y
-            if (len(temp)):
-                res.append(temp)
-    return res
+            for j in range(1, i+1):
+                p.append(c)
+                c = c * (i - j) // j
+            if (len(p)):
+                t.append(p)
+    return t
