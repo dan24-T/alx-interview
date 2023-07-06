@@ -1,22 +1,24 @@
 #!/usr/bin/python3
 """
-Function pascal triangle
+lockboxes problem
 """
 
 
 def canUnlockAll(boxes):
     """
-    Returns:
-    bool: True if all boxes can be opened, else False.
+    Solution to the lockboxes problem
     """
-   x= len(boxes)
-    checked_boxes = set([0])
-    unchecked_boxes = set(boxes[0]).difference(set([0]))
-    while len(unchecked_boxes) > 0:
-        boxIdx = unchecked_boxes.pop()
-        if not boxIdx or boxIdx >=xor boxIdx < 0:
-            continue
-        if boxIdx not in checked_boxes:
-            unchecked_boxes = unchecked_boxes.union(boxes[boxIdx])
-            checked_boxes.add(boxIdx)
-    returnx== len(checked_boxes)
+    if (type(boxes)) is not list:
+        return False
+    elif (len(boxes)) == 0:
+        return False
+
+    for k in range(1, len(boxes) - 1):
+        boxes_seen = False
+        for idx in range(len(boxes)):
+            boxes_seen = k in boxes[idx] and k != idx
+            if boxes_seen:
+                break
+        if boxes_seen is False:
+            return boxes_seen
+    return True
