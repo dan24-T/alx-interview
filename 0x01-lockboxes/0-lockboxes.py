@@ -4,20 +4,19 @@ Function pascal triangle
 """
 
 
-def pascal_triangle(n):
-    """Print Pascal's Triangle
-        n (int): Size of the pascal triangle
+def canUnlockAll(boxes):
     """
-    t = []
-    if (n <= 0):
-        return t
-    else:
-        for i in range(n+1):
-            p = []
-            c = 1
-            for j in range(1, i+1):
-                p.append(c)
-                c = c * (i - j) // j
-            if (len(p)):
-                t.append(p)
-    return t
+    Returns:
+    bool: True if all boxes can be opened, else False.
+    """
+   x= len(boxes)
+    checked_boxes = set([0])
+    unchecked_boxes = set(boxes[0]).difference(set([0]))
+    while len(unchecked_boxes) > 0:
+        boxIdx = unchecked_boxes.pop()
+        if not boxIdx or boxIdx >=xor boxIdx < 0:
+            continue
+        if boxIdx not in checked_boxes:
+            unchecked_boxes = unchecked_boxes.union(boxes[boxIdx])
+            checked_boxes.add(boxIdx)
+    returnx== len(checked_boxes)
