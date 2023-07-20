@@ -1,23 +1,24 @@
 #!/usr/bin/python3
 """
-Function pascal triangle
+lockboxes problem
 """
 
 
-def pascal_triangle(n):
-    """Print Pascal's Triangle
-        n (int): Size of the pascal triangle
+def canUnlockAll(boxes):
     """
-    t = []
-    if (n <= 0):
-        return t
-    else:
-        for i in range(n+1):
-            p = []
-            c = 1
-            for j in range(1, i+1):
-                p.append(c)
-                c = c * (i - j) // j
-            if (len(p)):
-                t.append(p)
-    return t
+    Solution to the lockboxes problem
+    """
+    if (type(boxes)) is not list:
+        return False
+    elif (len(boxes)) == 0:
+        return False
+
+    for k in range(1, len(boxes) - 1):
+        boxes_seen = False
+        for idx in range(len(boxes)):
+            boxes_seen = k in boxes[idx] and k != idx
+            if boxes_seen:
+                break
+        if boxes_seen is False:
+            return boxes_seen
+    return True
