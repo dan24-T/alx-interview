@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''A script that generates random HTTP request logs.
+'''determine if given data represents valid UTF-8 encoding
 '''
 def validUTF8(data):
     """
