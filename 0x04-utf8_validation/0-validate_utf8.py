@@ -1,23 +1,30 @@
 #!/usr/bin/python3
-'''A script that generates random HTTP request logs.
+'''determine if given data represents valid UTF-8 encoding
 '''
-import random
-import sys
-import datetime
-from time import sleep
+def validUTF8(data):
+    """
+    Return True if data is vali
+    else return False
+    """
+    count = 0
 
+    for bit in data:
+        binary = bin(bit).replace('0b', '').rjust(8, '0')[-8:]
+        if count == 0:
+            if binary.startswith('110'):
+                count = 1
+            if binary.startswith('1110'):
+                count = 2
+            if binary.startswith('11110'):
+                count = 3
+            if binary.startswith('10'):
+                return False
+        else:
+            if not binary.startswith('10'):
+                return False
+            count -= 1
 
-for i in range(10000):
-    sleep(random.random())
-    sys.stdout.write("{:d}.{:d}.{:d}.{:d} - [{}] \"GET {} {}\" {} {}\n".format(
-        random.randint(1, 255),
-        random.randint(1, 255),
-        random.randint(1, 255),
-        random.randint(1, 255),
-        datetime.datetime.now(),
-        '/projects/1216',
-        'HTTP/1.1',
-        random.choice([200, 301, 400, 401, 403, 404, 405, 500]),
-        random.randint(1, 1024)
-    ))
-    sys.stdout.flush()
+    if count != 0:
+        return False
+
+    return True
